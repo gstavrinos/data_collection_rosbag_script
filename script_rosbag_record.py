@@ -81,7 +81,9 @@ if __name__ == '__main__':
         command = "rosbag record -O " + final_name + " /scan"#" /camera/rgb/image_raw /camera/depth/image_raw /audio /acoustic_magic/data_raw /scan"
         command = shlex.split(command)
         rosbag_process = subprocess.Popen(command)
-        time.sleep(5)
+        time.sleep(2)
+
+        raw_input('\033[91m' + "Press enter to stop recording\n" + '\033[0m')
 
         nodes = os.popen("rosnode list").readlines()
         for i in range(len(nodes)):
@@ -90,11 +92,6 @@ if __name__ == '__main__':
         for node in nodes:
             if(node.startswith("/record_")):
                 os.system("rosnode kill "+ node)
-
-        #raw_input('\033[91m' + "Press enter to stop recording\n" + '\033[0m')
-        child_pid = rosbag_process.pid
-        #os.kill(child_pid, signal.SIGTERM)
-        rosbag_process.kill()
 
         next_ = raw_input('\033[94m' + "Do you want to run again? (y/n)\n" + '\033[0m').lower()
         while(next_ != "y" and next_ != "n"):
