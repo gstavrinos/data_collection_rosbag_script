@@ -97,5 +97,11 @@ if __name__ == '__main__':
             next_ = raw_input('\033[94m' + "Do you want to run again? (y/n)\n" + '\033[0m').lower()
 
         if(next_ == "n"):
+            nodes = os.popen("rosnode list").readlines()
+            for i in range(len(nodes)):
+                nodes[i] = nodes[i].replace("\n","")
+
+            for node in nodes:
+                os.system("rosnode kill "+ node)
             print '\033[91m' + "Good bye then!" + '\033[0m'
             break
