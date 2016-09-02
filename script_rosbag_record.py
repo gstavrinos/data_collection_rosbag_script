@@ -3,9 +3,8 @@ import subprocess, shlex
 import time, os, signal
 
 if __name__ == '__main__':
+    print '\033[92m' + "Welcome to the Radio Dataset Script!\n" + '\033[0m'
     while(True):
-        print '\033[92m' + "Welcome to the Radio Dataset Script!\n" + '\033[0m'
-
         next_ = raw_input("Do you want to initialize the sensors? (y/n):\n").lower()
         while(next_ != "y" and next_ != "n"):
             next_ = raw_input("Do you want to initialize the sensors? (y/n):\n").lower()
