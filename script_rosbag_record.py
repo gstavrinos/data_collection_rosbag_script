@@ -63,7 +63,7 @@ if __name__ == '__main__':
         final_name += "_cg"
         next_ = ""
         if(scenario != "1A" and scenario != "1B"):
-            next_ = raw_input("Please enter Caregiver (4characters):\n").lower()
+            next_ = raw_input("Please enter Caregiver (4 characters):\n").lower()
             while(len(next_) != 4):
                 next_ = raw_input("Please enter Caregiver (4 characters):\n").lower()
         final_name += next_
@@ -71,7 +71,7 @@ if __name__ == '__main__':
         final_name += "_v"
         next_ = ""
         if(scenario == "3B"):
-            next_ = raw_input("Please enter Visitor (4characters):\n").lower()
+            next_ = raw_input("Please enter Visitor (4 characters):\n").lower()
             while(len(next_) != 4):
                 next_ = raw_input("Please enter Visitor (4 characters):\n").lower()
         final_name += next_
