@@ -18,7 +18,7 @@ if __name__ == '__main__':
             command = "roslaunch astra_launch astra.launch"
             command = shlex.split(command)
             subprocess.Popen(command)
-            time.sleep(10)
+            time.sleep(20)
             print '\033[93m' + "Camera is now running!\n" + '\033[0m'
             command = "rosrun urg_node urg_node _ip_address:=192.168.0.10"
             command = shlex.split(command)
@@ -38,7 +38,6 @@ if __name__ == '__main__':
         next_ = raw_input("Please enter Sensor Setup:\n")
         while(next_ != "1" and next_ != "2"):
             next_ = raw_input("Please enter Sensor Setup:\n")
-        print "ok"
         final_name += next_
 
         final_name += "_ls"
@@ -77,7 +76,7 @@ if __name__ == '__main__':
         final_name += next_
         final_name += ".bag"
 
-        command = "rosbag record -O " + final_name + " /scan"#" /camera/rgb/image_raw /camera/depth/image_raw /audio /acoustic_magic/data_raw /scan"
+        command = "rosbag record -O " + final_name + " /camera/rgb/image_raw /camera/depth/image_raw /audio /acoustic_magic_doa/data_raw /scan"
         command = shlex.split(command)
         rosbag_process = subprocess.Popen(command)
         time.sleep(2)
@@ -103,5 +102,5 @@ if __name__ == '__main__':
 
             for node in nodes:
                 os.system("rosnode kill "+ node)
-            print '\033[91m' + "Good bye then!" + '\033[0m'
+            print '\033[91m' + "Good bye!" + '\033[0m'
             break
