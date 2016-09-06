@@ -74,8 +74,20 @@ if __name__ == '__main__':
             while(len(next_) != 4):
                 next_ = raw_input("Please enter Visitor (4 characters):\n").lower()
         final_name += next_
-        final_name += ".bag"
 
+        if os.path.isfile("./"+final_name+".bag"):
+            ans = raw_input('\033[91m' + "WARNING: The rosbag you are trying to record already exists! Do you want to overwrite (0), make a new one without overwriting (1), or start again (2)?\n" + '\033[0m')
+            while (ans != "0" and ans != "1" and ans!= "2"):
+                ans = raw_input('\033[91m' + "WARNING: The rosbag you are trying to record already exists! Do you want to overwrite (0), make a new one without overwriting (1), or start again (2)?\n" + '\033[0m')
+            if(ans == "1"):
+                count = 1
+                while(os.path.isfile("./"+final_name+"("+str(count)+").bag")):
+                    count+=1
+                final_name += "("+str(count)+")"
+            elif(ans == "2"):
+                continue
+
+        final_name += ".bag"
         command = "rosbag record -O " + final_name + " /camera/rgb/image_raw /camera/depth/image_raw /audio /acoustic_magic_doa/data_raw /scan"
         command = shlex.split(command)
         rosbag_process = subprocess.Popen(command)
