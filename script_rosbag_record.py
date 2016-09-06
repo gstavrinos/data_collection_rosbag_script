@@ -87,6 +87,8 @@ if __name__ == '__main__':
             elif(ans == "2"):
                 continue
 
+        raw_input('\033[92m' + "Press enter to start recording...\n" + '\033[0m')
+
         final_name += ".bag"
         command = "rosbag record -O " + final_name + " /camera/rgb/image_raw /camera/depth/image_raw /audio /acoustic_magic_doa/data_raw /scan"
         command = shlex.split(command)
